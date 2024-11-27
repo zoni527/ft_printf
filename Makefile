@@ -29,9 +29,7 @@ SRC =	$(SRCDIR)ft_printf.c \
 	$(SRCDIR)handle_i.c \
 	$(SRCDIR)handle_u.c \
 	$(SRCDIR)handle_hex_lowercase.c \
-	$(SRCDIR)handle_hex_uppercase.c \
-	$(SRCDIR)handle_percentage.c \
-	$(SRCDIR)write_till_char.c
+	$(SRCDIR)handle_hex_uppercase.c
 
 OBJ = $(SRC:.c=.o)
 
