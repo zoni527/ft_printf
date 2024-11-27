@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:33:44 by jvarila           #+#    #+#             */
-/*   Updated: 2024/11/26 10:29:37 by jvarila          ###   ########.fr       */
+/*   Updated: 2024/11/27 10:12:14 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,25 @@ int	ft_printf(const char *format_str, ...)
 {
 	va_list	ap;
 	int		counter;
+	int		rval;
 	char	c;
 
 	if (!format_str)
 		return (-1);
-	counter = 0;
 	va_start(ap, format_str);
-	counter += write_till_char(&format_str, '%');
-	c = next_conversion_type(format_str);
-	while (c)
+	counter = 0;
+	while (*format_str)
 	{
-		counter += handle_conversion(&format_str, ap, c);
-		counter += write_till_char(&format_str, '%');
-		c = next_conversion_type(format_str);
+		if (*format_str == '%')
+		{
+			c = next_conversion_type(format_str);
+			rval = handle_conversion(&format_str, ap, c);
+		}
+		else
+			rval = ft_putchar(*(format_str++));
+		if (rval < 0)
+			return (-1);
+		counter += rval;
 	}
 	va_end(ap);
 	return (counter);
@@ -61,19 +67,19 @@ static int	handle_conversion(const char **format_str_ptr, va_list ap, char c)
 	else if (c == 'X')
 		return (handle_hex_uppercase(format_str_ptr, ap));
 	else if (c == '%')
-		return (handle_percentage(format_str_ptr));
+	{
+		*format_str_ptr += 2;
+		return (ft_putchar('%'));
+	}
 	else
-		(*format_str_ptr) += 2;
+		return (ft_putchar(*((*format_str_ptr)++)));
 	return (-1);
 }
 
-// The null character is returned if no valid conversion is found.
+// The null character is returned if the character after % is not in the set
+// of valid conversions.
 static char	next_conversion_type(const char *format_str)
 {
-	if (format_str)
-		format_str = ft_strchr(format_str, '%');
-	if (!format_str)
-		return ('\0');
 	if (ft_strchr(CONVERSION_SET, *(++format_str)))
 		return (*format_str);
 	return ('\0');
