@@ -16,7 +16,6 @@ int	handle_c(const char **format_str_ptr, va_list ap)
 {
 	unsigned char	c;
 
-	c = 0;
 	c = (unsigned char)va_arg(ap, int);
 	*format_str_ptr = ft_strchr(*format_str_ptr, 'c') + 1;
 	return (ft_putchar(c));

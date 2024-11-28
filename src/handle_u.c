@@ -17,10 +17,11 @@ static int	ft_putnbr_u(unsigned int u);
 int	handle_u(const char **format_str_ptr, va_list ap)
 {
 	unsigned int	u;
+	char			*u_str;
 
-	u = 0;
 	u = va_arg(ap, unsigned int);
 	*format_str_ptr = ft_strchr(*format_str_ptr, 'u') + 1;
+	u_str = ft_utoa(u);
 	return (ft_putnbr_u(u));
 }
 

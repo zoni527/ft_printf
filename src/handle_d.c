@@ -16,7 +16,6 @@ int	handle_d(const char **format_str_ptr, va_list ap)
 {
 	int	d;
 
-	d = 0;
 	d = va_arg(ap, int);
 	*format_str_ptr = ft_strchr(*format_str_ptr, 'd') + 1;
 	return (ft_putnbr(d));

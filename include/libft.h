@@ -16,6 +16,14 @@
 # include <unistd.h>
 # include <limits.h>
 
+# ifndef HEX_BASE_LOWER_CASE
+#  define HEX_BASE_LOWER_CASE "0123456789abcdef"
+# endif
+
+# ifndef HEX_BASE_UPPER_CASE
+#  define HEX_BASE_UPPER_CASE "0123456789ABCDEF"
+# endif
+
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -55,6 +63,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
+char	*ft_hextoa(unsigned long n, unsigned char mode);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
