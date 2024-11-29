@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_u.c                                         :+:      :+:    :+:   */
+/*   ft_free_ptr_return_int.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 12:32:18 by jvarila           #+#    #+#             */
-/*   Updated: 2024/11/26 10:50:23 by jvarila          ###   ########.fr       */
+/*   Created: 2024/11/29 09:52:18 by jvarila           #+#    #+#             */
+/*   Updated: 2024/11/29 09:53:26 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libftprintf.h"
+#include "libft.h"
 
-int	handle_u(const char **format_str_ptr, va_list ap)
+int	ft_free_ptr_return_int(void **ptr_to_ptr, int i)
 {
-	unsigned int	u;
-	char			*u_str;
-	int				characters_written;
-
-	u = va_arg(ap, unsigned int);
-	*format_str_ptr = ft_strchr(*format_str_ptr, 'u') + 1;
-	u_str = ft_utoa(u);
-	if (!u_str)
-		return (-1);
-	characters_written = ft_putstr(u_str);
-	free(u_str);
-	return (characters_written);
+	free(*ptr_to_ptr);
+	*ptr_to_ptr = NULL;
+	return (i);
 }

@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_u.c                                         :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 12:32:18 by jvarila           #+#    #+#             */
-/*   Updated: 2024/11/26 10:50:23 by jvarila          ###   ########.fr       */
+/*   Created: 2024/11/28 09:19:54 by jvarila           #+#    #+#             */
+/*   Updated: 2024/11/28 16:01:25 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libftprintf.h"
+#include "libft.h"
 
-int	handle_u(const char **format_str_ptr, va_list ap)
+char	*ft_utoa(unsigned int n)
 {
-	unsigned int	u;
-	char			*u_str;
-	int				characters_written;
+	char	*str;
+	size_t	str_len;
+	int		mod;
 
-	u = va_arg(ap, unsigned int);
-	*format_str_ptr = ft_strchr(*format_str_ptr, 'u') + 1;
-	u_str = ft_utoa(u);
-	if (!u_str)
-		return (-1);
-	characters_written = ft_putstr(u_str);
-	free(u_str);
-	return (characters_written);
+	str_len = ft_uint_digits(n);
+	str = malloc((str_len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	str[str_len] = '\0';
+	while (str_len--)
+	{
+		mod = n % 10;
+		str[str_len] = mod + '0';
+		n /= 10;
+	}
+	return (str);
 }

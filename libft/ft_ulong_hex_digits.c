@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_u.c                                         :+:      :+:    :+:   */
+/*   ft_ulong_hex_digits.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 12:32:18 by jvarila           #+#    #+#             */
-/*   Updated: 2024/11/26 10:50:23 by jvarila          ###   ########.fr       */
+/*   Created: 2024/11/29 09:09:21 by jvarila           #+#    #+#             */
+/*   Updated: 2024/11/29 09:11:42 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libftprintf.h"
+#include "libft.h"
 
-int	handle_u(const char **format_str_ptr, va_list ap)
+int	ft_ulong_hex_digits(unsigned long n)
 {
-	unsigned int	u;
-	char			*u_str;
-	int				characters_written;
+	int	digits;
 
-	u = va_arg(ap, unsigned int);
-	*format_str_ptr = ft_strchr(*format_str_ptr, 'u') + 1;
-	u_str = ft_utoa(u);
-	if (!u_str)
-		return (-1);
-	characters_written = ft_putstr(u_str);
-	free(u_str);
-	return (characters_written);
+	if (n == 0)
+		return (1);
+	digits = 0;
+	while (n != 0)
+	{
+		digits++;
+		n /= 16;
+	}
+	return (digits);
 }

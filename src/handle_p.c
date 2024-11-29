@@ -14,7 +14,6 @@
 
 static char	*ptrtoa(uintptr_t ptr_val);
 static int	ptr_len(uintptr_t ptr);
-static int	free_ptr_and_return_int(void **ptr_to_ptr, int rval);
 
 int	handle_p(const char **format_str_ptr, va_list ap)
 {
@@ -33,11 +32,11 @@ int	handle_p(const char **format_str_ptr, va_list ap)
 		return (-1);
 	rval = ft_putstr("0x");
 	if (rval < 0)
-		return (free_ptr_and_return_int((void *)(&ptr_str), -1));
+		return (ft_free_ptr_return_int((void *)(&ptr_str), -1));
 	characters_written += rval;
 	rval = ft_putstr(ptr_str);
 	if (rval < 0)
-		return (free_ptr_and_return_int((void *)(&ptr_str), -1));
+		return (ft_free_ptr_return_int((void *)(&ptr_str), -1));
 	characters_written += rval;
 	free(ptr_str);
 	return (characters_written);
@@ -78,10 +77,4 @@ static int	ptr_len(uintptr_t ptr_val)
 		ptr_val /= 16;
 	}
 	return (len);
-}
-
-static int	free_ptr_and_return_int(void **ptr_to_ptr, int rval)
-{
-	free(*ptr_to_ptr);
-	return (rval);
 }

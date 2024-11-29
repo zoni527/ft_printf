@@ -63,7 +63,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-char	*ft_hextoa(unsigned long n, unsigned char mode);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -72,12 +71,6 @@ int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(const char *s, int fd);
 int		ft_putendl_fd(const char *s, int fd);
 int		ft_putnbr_fd(int n, int fd);
-
-int		ft_putstr(const char *s);
-int		ft_putchar(char c);
-int		ft_putendl(const char *s);
-int		ft_putnbr(int n);
-int		ft_putnbr_base(unsigned int n, const char *base);
 
 typedef struct s_list
 {
@@ -94,5 +87,24 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+int		ft_putstr(const char *s);
+int		ft_putchar(char c);
+int		ft_putendl(const char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_base(unsigned int n, const char *base);
+
+char	*ft_longtoa(long int n);
+char	*ft_hextoa(unsigned long n, unsigned char mode);
+char	*ft_utoa(unsigned int n);
+char	*ft_ulongtoa(unsigned long n);
+
+int		ft_int_digits(int n);
+int		ft_long_digits(long int n);
+int		ft_uint_digits(unsigned int n);
+int		ft_ulong_digits(unsigned long n);
+int		ft_ulong_hex_digits(unsigned long n);
+
+int		ft_free_ptr_return_int(void **ptr_to_ptr, int i);
 
 #endif
