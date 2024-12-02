@@ -16,7 +16,7 @@ static int	handle_conversion(const char **format_str_ptr, va_list ap, char c);
 static char	next_conversion_type(const char *format_str);
 
 // Subfunctions advance the format string and return the amount of characters
-// written in the absence of errors.
+// written in the absence of errors or -1 when an error occurs.
 int	ft_printf(const char *format_str, ...)
 {
 	va_list	ap;
@@ -45,9 +45,8 @@ int	ft_printf(const char *format_str, ...)
 	return (counter);
 }
 
-// In the case of an invalid format string conversion the format string position
-// is advanced by two, skipping the percentage sign and the invalid specifier
-// after it.
+// If no valid conversion is found print the percentage sign, advance the
+// format string forward by one and return control back to ft_printf.
 static int	handle_conversion(const char **format_str_ptr, va_list ap, char c)
 {
 	if (c == 'c')
@@ -73,7 +72,6 @@ static int	handle_conversion(const char **format_str_ptr, va_list ap, char c)
 	}
 	else
 		return (ft_putchar(*((*format_str_ptr)++)));
-	return (-1);
 }
 
 // The null character is returned if the character after % is not in the set
