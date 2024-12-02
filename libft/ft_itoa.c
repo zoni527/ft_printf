@@ -12,14 +12,11 @@
 
 #include "libft.h"
 
-// Use the calculated amount of digits and a possible minus sign to
-// create the string memory with malloc, create a positive copy of
-// the number but store the sign, write backwards and insert digits
-// from the right end of the number using modulo, shrink the number
-// by dividing by ten. If the number is negative the last element
-// will be the minus sign, the last remaining digit otherwise. Use
-// long to avoid converting INT_MIN to a positive int and overflowing.
-// Return string and enjoy!
+// Use the calculated amount of digits and a possible minus sign to create the
+// string memory with malloc, store the sign, write backwards and insert digits
+// from the right end of the number using modulo times sign, shrink the number
+// by dividing by ten. If the number is negative the last element will be the
+// minus sign, the last remaining digit otherwise. Return string and enjoy!
 
 char	*ft_itoa(int n)
 {
