@@ -15,7 +15,7 @@
 static char	*ptrtoa(uintptr_t ptr_val);
 static int	ptr_len(uintptr_t ptr);
 
-int	handle_p(const char **format_str_ptr, va_list ap)
+int	handle_p(const char **format_str_ptr, va_list *ap)
 {
 	uintptr_t	ptr_val;
 	char		*ptr_str;
@@ -23,7 +23,7 @@ int	handle_p(const char **format_str_ptr, va_list ap)
 	int			characters_written;
 
 	characters_written = 0;
-	ptr_val = (uintptr_t)va_arg(ap, void *);
+	ptr_val = (uintptr_t)va_arg(*ap, void *);
 	*format_str_ptr = ft_strchr(*format_str_ptr, 'p') + 1;
 	if (!ptr_val)
 		return (ft_putstr("(nil)"));

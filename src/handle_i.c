@@ -12,11 +12,11 @@
 
 #include "../include/libftprintf.h"
 
-int	handle_i(const char **format_str_ptr, va_list ap)
+int	handle_i(const char **format_str_ptr, va_list *ap)
 {
 	int	i;
 
-	i = va_arg(ap, int);
+	i = va_arg(*ap, int);
 	*format_str_ptr = ft_strchr(*format_str_ptr, 'i') + 1;
 	return (ft_putnbr(i));
 }

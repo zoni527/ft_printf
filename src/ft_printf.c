@@ -12,7 +12,7 @@
 
 #include "../include/libftprintf.h"
 
-static int	handle_conversion(const char **format_str_ptr, va_list ap, char c);
+static int	handle_conversion(const char **format_str_ptr, va_list *ap, char c);
 static char	next_conversion_type(const char *format_str);
 
 // Subfunctions advance the format string and return the amount of characters
@@ -33,7 +33,7 @@ int	ft_printf(const char *format_str, ...)
 		if (*format_str == '%')
 		{
 			c = next_conversion_type(format_str);
-			rval = handle_conversion(&format_str, ap, c);
+			rval = handle_conversion(&format_str, &ap, c);
 		}
 		else
 			rval = ft_putchar(*(format_str++));
@@ -47,7 +47,7 @@ int	ft_printf(const char *format_str, ...)
 
 // If no valid conversion is found print the percentage sign, advance the
 // format string forward by one and return control back to ft_printf.
-static int	handle_conversion(const char **format_str_ptr, va_list ap, char c)
+static int	handle_conversion(const char **format_str_ptr, va_list *ap, char c)
 {
 	if (c == 'c')
 		return (handle_c(format_str_ptr, ap));
